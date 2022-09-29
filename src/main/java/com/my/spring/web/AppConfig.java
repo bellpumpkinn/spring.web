@@ -1,6 +1,7 @@
 package com.my.spring.web;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -16,6 +17,11 @@ public class AppConfig implements WebMvcConfigurer{
 	  	UserController가 우선적으로 실행되는데
 	  	@PostMapping, @GetMapping를 지우면 12번줄이 실행이된다.
 	 */
+	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("res/**").addResourceLocations("WEB-INF/res/"); // res뒤에 뭐가 와도 괜찮다를 *2개로 표현.
+	} //res로 시작하는 무엇이든지를 WEB-INF/res/ 라는 url을 만듬.
 }
 
 /*

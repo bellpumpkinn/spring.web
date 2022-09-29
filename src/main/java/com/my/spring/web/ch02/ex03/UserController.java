@@ -14,9 +14,9 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public String userOut(User user) {
+	public String userOut(User user) { //커멘더하나로 선언하면 User에 있는게 다 옴.
 		return "ch02/ex03/userOut";
-	}
+	} // 커맨더이자 모델도됨. 이 커멘더는(user)라는 모델이 자동지정됨.
 }
 
 /*
