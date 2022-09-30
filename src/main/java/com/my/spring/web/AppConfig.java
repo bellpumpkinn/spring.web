@@ -1,5 +1,6 @@
 package com.my.spring.web;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -7,6 +8,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class AppConfig implements WebMvcConfigurer{
+	@Value("${attachPath}")
+	private String attachPath;
+	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("ch01/main");
@@ -21,7 +25,9 @@ public class AppConfig implements WebMvcConfigurer{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("res/**").addResourceLocations("WEB-INF/res/"); // res뒤에 뭐가 와도 괜찮다를 *2개로 표현.
-	} //res로 시작하는 무엇이든지를 WEB-INF/res/ 라는 url을 만듬.
+		registry.addResourceHandler("attach/**").addResourceLocations("file:///" + attachPath + "/");
+	} //27번줄 : res로 시작하는 무엇이든지를 WEB-INF/res/ 라는 url을 만듬.
+	  // "file:///" => 외부에서 받는거.
 }
 
 /*
