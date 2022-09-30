@@ -18,8 +18,8 @@ public class UserController {
 	public String loginIn(@CookieValue(required=false) String userId, 
 			@ModelAttribute("user") UserDto user) { // 리퀘스트에 저장된 쿠키밸류를 읽어내는 작업.
 		if(userId != null) user.setUserId(userId); // 쿠키로받은 userId를 집어넣는다. userId가 없으면 null
-		return "ch02/ex06/login";
-	}
+		return "ch02/ex06/login"; // 모델이름이 맘에 안들면 모델어트리뷰트해서 이름 정해줄수있음.
+	} // 커맨드는 리퀘스트 파라미터를 사용할수있따.
 	
 	@PostMapping("login")
 	public String login(@ModelAttribute("user") UserDto user, String rememberMe, // rememberMe앞에 @RequestParam 생략.
