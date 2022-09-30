@@ -10,17 +10,20 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("ch02/ex01")
 public class UserController {
-	@GetMapping("11")
+	@GetMapping("11") //localhost/ch02/ex01/11 요청이 들어오면 아래의 함수를 실행하라고 해석
+	//ModelAndView : 데이터와 뷰를 동시에 설정이 가능.
 	public ModelAndView handler11(ModelAndView mv) {
-		mv.addObject("user", new User("최한석", 11));
-		mv.setViewName("ch02/ex01/user"); //디스패쳐가 뷰리졸버한테 해석 부탁.
+		mv.addObject("user", new User("최한석", 11)); // 뷰로 보낼 데이터값.
+		mv.setViewName("ch02/ex01/user"); // 뷰의 이름.
 		
 		return mv;
 	}
 	
 	@GetMapping("21")
+	//Model => 데이터만 설정이 가능.
 	public String handler21(Model model) {
-		model.addAttribute("user", new User("한아름", 21));
+		model.addAttribute("user", new User("한아름", 21)); // 뷰로 보낼 데이터값.
+		
 		return "ch02/ex01/user";
 	}
 	
@@ -30,7 +33,7 @@ public class UserController {
 	} // "ch02/ex01/user" view 1개를 핸들러 3개가 쓰는상황.
 	//모델은 안보내줘도 viewName은 보내주는것을 알 수 있다.
 	
-	@GetMapping("31")
+	@GetMapping("31")  // User가 모델이다.
 	public void handler31(User user) { // void = 리턴값X
 		user.setUserName("양승일");
 		user.setAge(31);
@@ -102,6 +105,19 @@ mv는 디스패처가 리턴받는다.
 			  데이터를 가져올 때 사용한다.
 @PostMapping : POST 요청을 하는 API의 어노테이션
 			   데이터를 게시할 때 사용한다.
+			   
+*/
 
-	
+/*
+컨트롤러는 사용자가 화면(view)단에서 입력이나 어떤 이벤트를 했을경우,
+그 이벤트화면에 맞는 화면(view)이나 비즈니스로직(model)을 실행할수있도록
+업데이트를 해주는 역할을 맡는다.
+
+@Controller 어노테이션은 어노테이션이 적용된 클래스를 컨트롤러임을 내타내고,
+자동으로 bean이 등록되어 @Controller어노테이션이 적용된 클래스를 
+Controller로 사용할 수 있다.
+
+원래하던 자바는 class를 생성하고 new를 입력해서 원하는 객체를 직접 생성후 사용,
+하지만 스프링에서는 직접 new 하지않고 스프링에 의해 관리당하는 자바객체를 사용.
+Spring에 의해 생성되고 관리되는 자바객체를 Bean이라고 한다.
 */
