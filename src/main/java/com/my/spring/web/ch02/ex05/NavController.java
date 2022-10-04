@@ -27,8 +27,6 @@ public class NavController {
 	public String naver() {
 		return "redirect:http://naver.com";
 	}
-	
-	
 }
 /*
 

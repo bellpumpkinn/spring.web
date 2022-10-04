@@ -25,7 +25,7 @@ public class UserController {
 		model.addAttribute("user", new User("한아름", 21)); // 뷰로 보낼 데이터값.
 		
 		return "ch02/ex01/user";
-	}
+	} // 리턴타입이  스트링인경우 리턴값으로 view를 쓴다.
 	
 	@GetMapping("22")
 	public String handler22() {

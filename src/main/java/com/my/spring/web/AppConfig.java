@@ -18,7 +18,7 @@ public class AppConfig implements WebMvcConfigurer {
 		// userIn과 userOut의 URL이 동일하고, UserController가 있다면, 컨트롤러를 우선적으로 실행함
 		// => UserController에 @GetMapping과 @PostMapping을 지우면 12번째줄이 실행됨
 	}
-	
+
 	@Override
 	 public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	      registry.addResourceHandler("res/**").addResourceLocations("WEB-INF/res/");
