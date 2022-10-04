@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.my.spring.web.ch04.dao.TodayDao;
 
-@Service
+@Service // 난 서비스야 선언 + IoC도 되는듯
 public class TodayServiceImpl implements TodayService{
 	@Autowired private TodayDao todayDao;
 	
@@ -17,6 +17,5 @@ public class TodayServiceImpl implements TodayService{
 	}
 }
 
-//TodayDao에서의 Today는 data, domain
-//TodayService에서의 Today는 업무명.
-//TodayController에서의 Today도 업무명.
+//TodayDao - 여기서 Today => data, domain
+//TodayService - 여기서 Today => 업무명

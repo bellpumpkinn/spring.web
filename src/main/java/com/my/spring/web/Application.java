@@ -5,12 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.my.spring.web.ch04.dao.map")
-// @MapperScan("com.my.spring.web.**.dao.map")
+@MapperScan("com.my.spring.web.**.map")
+//@MapperScan("com.my.spring.web.**.dao.map")
 public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 }
-
-//컨트롤러가 가지고있는메서드를 핸들러라고함.

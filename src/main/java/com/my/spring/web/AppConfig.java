@@ -7,41 +7,46 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class AppConfig implements WebMvcConfigurer{
-	@Value("${attachPath}")
-	private String attachPath;
+public class AppConfig implements WebMvcConfigurer {
+	@Value("${attachPath}") // property Name 지정
+	private String attachPath; // property에 저장할 변수 선언
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("ch01/main");
-		//registry.addViewController("ch02/ex03/user").setViewName("ch02/ex03/userIn");
-	} /*위 11번줄 코드는 "/ch02/ex03/user"  url이 요청되면
-	  ch02/ex03/userIn라는 view로 이동하게 해준다.
-	
-	  	UserController가 우선적으로 실행되는데
-	  	@PostMapping, @GetMapping를 지우면 12번줄이 실행이된다.
-	 */
+		registry.addViewController("/").setViewName("ch01/main"); // request url이 "/"면, ViewName을 "ch01/main"으로 설정
+		// registry.addViewController("ch02/ex03/user").setViewName("ch02/ex03/userIn");
+		// userIn과 userOut의 URL이 동일하고, UserController가 있다면, 컨트롤러를 우선적으로 실행함
+		// => UserController에 @GetMapping과 @PostMapping을 지우면 12번째줄이 실행됨
+	}
 	
 	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("res/**").addResourceLocations("WEB-INF/res/"); // res뒤에 뭐가 와도 괜찮다를 *2개로 표현.
-		registry.addResourceHandler("attach/**").addResourceLocations("file:///" + attachPath + "/");
-	} //27번줄 : res로 시작하는 무엇이든지를 WEB-INF/res/ 라는 url을 만듬.
-	  // "file:///" => 외부에서 받는거.
+	 public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	      registry.addResourceHandler("res/**").addResourceLocations("WEB-INF/res/");
+	      registry.addResourceHandler("attach/**").addResourceLocations("file:///" + attachPath + "/");  
+		// Context Path 후 URL이, 'res'로 시작하는 무엇이든지를 -> 리소스핸들러 -> WEB-INF/res/로 바꿔버리고
+		// -> Default Servlet(Tomcat)에게 넘기고, duke.gif를 찾아서 담고, Client에게 넘김
+ 	    // 25줄 코드 ->첨부파일은 app 외부(밖)에있다. 파일생성작업은 window가 하기에, window가 알 수있게 지정해줘야한다.
+	      
+	}
 }
 
 /*
-컨트롤러의 역할은 모델과 뷰를 짝지어주는거.
+ViewControllerRegistry
+> model없이 쓰는 view를 등록
 
-ViewControllerRegistry는 모델없이 view를 등록.
+1. Client ▶ request (url:"/") ▶ 
+2. (Server)Dispatcher Servlet ("ch01/main"으로 파악) ▶ request 해석의뢰 ▶ 
+3. View Resolver ▶ response (prefix, suffix 붙여서) ▶ 
+4. Dispatcher ▶ viewName을 파악 후, request ▶ 
+5. ch01/main.jsp이름을 갖는 Servlet(View) ▶ response ▶ 
+6. Dispatcher Servlet ▶ response ▶ View - (WEB-INF/view/ch01/main.jsp) ▶ Client
 
-"ch01/main"주소를 
-view resolver한테 줌. 그럼 리턴하는 값은
+"/" url과
+"ch01/main" ViewName을
+ViewController에 등록시켜서 View로 이용하고,
 
-클라이언트가 서버로 리퀘스트를 보냄.
-1차로 디스패쳐가 받음. 받아보니 url 이 /(슬래시) 이다.
-/ 에 있는 viewName이 "ch01/main"라고 해준거다.
+Handler = Controller가 갖고있는 Method이다.
 
-뷰리절버는 /WEB-INF/view/ch01/main.jsp가 됨.
-
+res 폴더에 몰아넣고 리소스핸들러 1개 준비하던지,
+res 폴더 5개 만들고 리소스 핸들러 5개 준비하던지.
 */
