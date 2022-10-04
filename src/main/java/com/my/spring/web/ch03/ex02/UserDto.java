@@ -14,4 +14,6 @@ public class UserDto {
 /*
 파일은 DB에 파일명을 insert한다.
 
+클라이언트가 전달하는데이터(파라미터)
+파라미터밸류가 binary면 MultipartFile 사용
 */

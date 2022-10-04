@@ -5,3 +5,9 @@
    <label>얼굴: <input type='file' name='face'/></label>
    <input type='submit'/>
 </form>
+
+<!-- 
+multipart쓰려면 
+<form method='post' encType='multipart/form-data'>
+<input type='file'   을 써줘야함.
+ -->

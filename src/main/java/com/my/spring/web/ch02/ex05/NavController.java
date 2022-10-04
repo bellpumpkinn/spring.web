@@ -35,4 +35,6 @@ return "target"; 은 컨테이너는 target을 view네임으로 인지.
 forward하면 주소창이 forward인데
 redirect하면 주소창이 target으로 바뀜.
 
+forward는 a와 b가 서버
+redirect는 a는 핸들러, b는 다른무언가가돼도됨.
 */
