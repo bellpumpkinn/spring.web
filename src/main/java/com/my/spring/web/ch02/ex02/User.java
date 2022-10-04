@@ -17,8 +17,12 @@ public class User {
 /*
 @어노테이션
 
-@AllArgsConstructor //여기에 필드에 쓴 모든생성자만 만들어줌
-@NoArgsConstructor //기본 생성자를 만들어줌
+@AllArgsConstructor // 클래스의 모든 필드에 대한 생성자를 자동으로 생성합니다.
+public User(userName, age, .....)
+this.age = age.... 이런것들을 안만들어도 되게 해줌.
+
+@NoArgsConstructor // 파라미터가 없는 생성자를 자동으로 생성해준다.
+
 @Data // getter, setter 만들어줌
 
 @Getter, @Setter를 선언해줄 경우, 

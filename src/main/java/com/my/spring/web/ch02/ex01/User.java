@@ -13,7 +13,7 @@ public class User {
 }
 
 /*
-setter, getter만들어라 라는 어노테이션은 @Data
+@Data // setter, getter만들어라라는 어노테이션.
 
 mapper클래스 이름은 도메인명 + map
 service이름은 업무명 + service
@@ -30,7 +30,7 @@ service이름은 업무명 + service
 모든 필드에 접근자와 설정자가 자동으로 생성된다.
 
 @Controller - 해당 클래스가 Controller임을 나타내기 위한 어노테이션
-@RequestMapping -특정 url로부터 요청을 받으면 어떤 Controller에서 처리할 지 알아야 한다.
+@RequestMapping - 특정 url로부터 요청을 받으면 어떤 Controller에서 처리할 지 알아야 한다.
 이 때, 특정 url을 요청을 수행할 Controller과 매핑하여 지정하는 어노테이션이 @RequestMapping이다.
 
 */

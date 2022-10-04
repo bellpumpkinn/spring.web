@@ -9,11 +9,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("ch02/ex01")
+/*
+@RequestMapping - 특정 url로부터 요청을 받으면 어떤 Controller에서 처리할 지 알아야 한다.
+이 때, 특정 url을 요청을 수행할 Controller과 매핑하여 지정하는 어노테이션이 @RequestMapping이다.
+ */
 public class UserController {
-	@GetMapping("11") //localhost/ch02/ex01/11 요청이 들어오면 아래의 함수를 실행하라고 해석
+	@GetMapping("11") //localhost/ch02/ex01/11로 요청이 들어오면 아래의 함수를 실행하라고 해석
 	//ModelAndView : 데이터와 뷰를 동시에 설정이 가능.
 	public ModelAndView handler11(ModelAndView mv) {
-		mv.addObject("user", new User("최한석", 11)); // 뷰로 보낼 데이터값.
+		mv.addObject("user", new User("최한석", 11)); // 뷰로 보낼 데이터값. addObject는 key와 밸류를 지님.
 		mv.setViewName("ch02/ex01/user"); // 뷰의 이름.
 		
 		return mv;
@@ -30,7 +34,7 @@ public class UserController {
 	@GetMapping("22")
 	public String handler22() {
 		return "ch02/ex01/user";
-	} // "ch02/ex01/user" view 1개를 핸들러 3개가 쓰는상황.
+	} // "ch02/ex01/user" 는 현재 view 1개를 핸들러 3개가 쓰는상황.
 	//모델은 안보내줘도 viewName은 보내주는것을 알 수 있다.
 	
 	@GetMapping("31")  // User가 모델이다.
@@ -39,7 +43,7 @@ public class UserController {
 		user.setAge(31);
 	} //핸들러31이 던져주는 모델은 User고 모델value는 user
 	
-	@GetMapping("32")
+	@GetMapping("32") // user를 man으로 바꿨음.
 	public void handler32(@ModelAttribute("man")User user) {
 		user.setUserName("서준한");
 		user.setAge(32);
